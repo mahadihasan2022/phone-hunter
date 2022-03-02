@@ -15,15 +15,15 @@ const searchPhone = () => {
 
 const displaySearchResult = (phones) => {
   // console.log(phone);
-  if(phones.length == 0){
+  if (phones.length == 0) {
     alert("No Data Found");
-}
+  }
   const searchResult = document.getElementById("search-result");
-  const slice = phones.slice(0,20);
-  for(const phone of slice){
+  const slice = phones.slice(0, 20);
+  for (const phone of slice) {
     // console.log(phone);
-    const div = document.createElement('div');
-    div.classList.add('col');
+    const div = document.createElement("div");
+    div.classList.add("col");
     div.innerHTML = `
     <div class="cols-lg-3 cols-sm-1 w-50 mx-auto">
         <div class="card h-50">
@@ -41,23 +41,22 @@ const displaySearchResult = (phones) => {
     `;
 
     searchResult.appendChild(div);
-}
-}
-const loadPhoneDetail = phoneId => {
+  }
+};
+const loadPhoneDetail = (phoneId) => {
   // console.log(phoneId);
   const url = `https://openapi.programming-hero.com/api/phone/${phoneId}`;
   fetch(url)
-  .then(res => res.json())
-  .then(status => displayPhoneDetails(status.data));
-  
-}
+    .then((res) => res.json())
+    .then((status) => displayPhoneDetails(status.data));
+};
 
-const displayPhoneDetails = phone => {
-  let field = document.getElementById('detailPhone');
-  field.innerText = '';
-  const div = document.createElement('div');
+const displayPhoneDetails = (phone) => {
+  let field = document.getElementById("detailPhone");
+  field.innerText = "";
+  const div = document.createElement("div");
 
-  div. classList.add('card');
+  div.classList.add("card");
 
   div.innerHTML = `
   <div class="cols-lg-6 cols-sm-6 mx-auto">
@@ -69,12 +68,18 @@ const displayPhoneDetails = phone => {
           <h5 class="card-title">Sensors: ${phone.mainFeatures.sensors} </h5>
           <h5 class="card-title">Chipset: ${phone.mainFeatures.chipSet} </h5>
           <h5 class="card-title">Storage: ${phone.mainFeatures.storage} </h5>
-          <h5 class="card-title">Others: ${phone?.others?.WLAN ? phone.others.WLAN : 'Not Found'} </h5>
-          <h5 class="card-title">Bluetooth: ${phone?.others?.Bluetooth ? phone.others.Bluetooth : 'Not Found'} </h5>
-          <h5 class="card-title">Release Date: ${phone?.releaseDate ? phone.releaseDate : 'Not Found'} </h5>
+          <h5 class="card-title">Others: ${
+            phone?.others?.WLAN ? phone.others.WLAN : "Not Found"
+          } </h5>
+          <h5 class="card-title">Bluetooth: ${
+            phone?.others?.Bluetooth ? phone.others.Bluetooth : "Not Found"
+          } </h5>
+          <h5 class="card-title">Release Date: ${
+            phone?.releaseDate ? phone.releaseDate : "Not Found"
+          } </h5>
           
       </div>
   </div>
   `;
   field.appendChild(div);
-}
+};
